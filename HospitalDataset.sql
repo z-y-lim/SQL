@@ -1,6 +1,7 @@
 --View table
 SELECT * FROM healthcare_dataset;
 
+
 --Removing title prefixes and suffixes in the Names column
 UPDATE healthcare_dataset
 SET Name = 
@@ -70,6 +71,7 @@ FROM healthcare_dataset;
 UPDATE healthcare_dataset
 SET [Billing Amount] = ROUND([Billing Amount], 2);
 
+
 --Cleaning Hospital names Part 1 - Removing leading 'and ', trailing ',' 
 UPDATE healthcare_dataset
 SET Hospital = LTRIM(
@@ -90,6 +92,7 @@ SET Hospital = LTRIM(
 )
 WHERE Hospital LIKE 'and %' OR Hospital LIKE '%,';
 
+
 --Cleaning Hospital Names Part 2 - Removing trailing ', and'
 UPDATE healthcare_dataset
 SET Hospital = CASE
@@ -97,6 +100,7 @@ SET Hospital = CASE
     ELSE Hospital
 END
 WHERE Hospital LIKE '%, and';
+
 
 --Cleaning Hospital Names Part 3 -
 UPDATE healthcare_dataset
@@ -110,7 +114,6 @@ SET Hospital = REPLACE(
     ' and'
 )
 WHERE Hospital LIKE '% and' OR Hospital LIKE '%, and%';
-
 
 
 --Rename FirstName column to First Name and LastName column to Last Name for data naming standardisation
